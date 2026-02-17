@@ -14,21 +14,28 @@ Format a micro-SD card in FAT32 format (we recommend the SD Association's [SD Ca
 
 You can grab the latest `keybow-x.x.x.zip` file from https://github.com/pimoroni/keybow-firmware/releases and unzip it directly to your SD card.
 
-[Learn more about how to use Keybow on our learning portal](https://learn.pimoroni.com/keybow).
+Learn more about how to use Keybow on our [learning portal](https://learn.pimoroni.com/product/keybow).
 
 ## Building
+
+You'll need a build toolchain.
+
+```
+sudo apt install build-essential autoconf libtool libconfig-dev libpng-dev
+```
 
 ### bcm2835
 
 Build the bcm2835 library and install into a local build directory for static linking.
 
 ```
-cd bcm2835-x.xx
+cd bcm2835-*.**
 autoreconf -f -i
 mkdir build
 ./configure --prefix=$(pwd)/build
 make
 make install
+cd ..
 ```
 
 ### libusbgx
@@ -41,12 +48,14 @@ mkdir build
 ./configure --prefix=$(pwd)/build
 make
 make install
+cd ..
 ```
 
 ### lua
 
 ```
 sudo apt install libreadline-dev
-cd lua-5.3.5
+cd lua-5.4.0
 make linux
+cd ..
 ```
